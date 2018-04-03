@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from PIL import Image
 import math
 
@@ -9,9 +7,9 @@ def entropy(img):
 
 	histogram = img.histogram()
 	histogram_length = sum(histogram)
-
+	
 	samples_probability = [float(h) / histogram_length for h in histogram]
-
+	
 	return -sum([p * math.log(p, 2) for p in samples_probability if p != 0])
 
 def focalpoint(img):
@@ -45,30 +43,19 @@ def focalpoint(img):
 				max_ent = ent
 				tiles = data
 
-        if tiles['x'] > slice_size:
-                tiles['x'] -= slice_size
+		if tiles['x'] > slice_size:
+			tiles['x'] -= slice_size
         
-        if tiles['y'] > slice_size:
-                tiles['y'] -= slice_size
+		if tiles['y'] > slice_size:
+			tiles['y'] -= slice_size
 
-        if (tiles['x'] + crop_size) > w:
-                tiles['x'] = w - crop_size
+		if (tiles['x'] + crop_size) > w:
+			tiles['x'] = w - crop_size
 
-        if (tiles['y'] + crop_size) > h:
-                tiles['y'] = h - crop_size
+		if (tiles['y'] + crop_size) > h:
+			tiles['y'] = h - crop_size
 
-        tiles['w'] = w
-        tiles['h'] = h
+		tiles['w'] = w
+		tiles['h'] = h
 
 	return tiles
-
-if __name__ == '__main__' :
-
-    import sys
-    import pprint
-
-    path = sys.argv[1]
-    im = Image.open(path)
-
-    tiles = focalpoint(im)
-    print pprint.pformat(tiles)

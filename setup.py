@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from setuptools import setup, find_packages
 
 packages = find_packages()
@@ -12,7 +10,10 @@ setup(
     author='Micah Walter Studio',
     url='https://github.com/micahwalterstudio/shannon',
     requires=[],
+    install_requires=[
+        'Pillow',
+    ],
     packages=packages,
     scripts=[],
     download_url='https://github.com/micahwalterstudio/shannon/tarball/master',
-    license='BSD')
+    license='MIT')
